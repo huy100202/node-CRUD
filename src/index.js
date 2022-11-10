@@ -1,8 +1,8 @@
 const express = require('express');
 const configViewEngine  = require('./configs/viewEngine');
-// const connect= require('./configs/connectDB')
+const connect= require('./configs/connectDB')
 const route = require('./route');
-
+connect.connection;
 const app = express();
 const port = 3000;
 configViewEngine(app);
