@@ -1,27 +1,43 @@
 const connect = require("../../configs/connectDB");
 
 class usersModel {
-  getAllUsers = function (result) {
-    let query = "SELECT * FROM users";
-  
-    connect.query(query, (err, res) => {
-      if (err) {
-        console.log("error: ", err);
-        result(null, err);
-        return;
-      }
-  
-    //   console.log("tutorials: ", res);
-      result(null, res);
+  getAllUsers = function () {
+    // let query = "SELECT * FROM users";
+
+    // connect.query(query, (err, res) => {
+    //   if (err) {
+    //     console.log("error: ", err);
+    //     result(null, err);
+    //     return;
+    //   }
+
+    //   result(null, res);
+    // });
+    return new Promise(function (resolve, reject) {
+      // The Promise constructor should catch any errors thrown on
+      // this tick. Alternately, try/catch and reject(err) on catch.
+
+      let query = "SELECT * FROM users";
+
+      connect.query(query, function (err, rows, fields) {
+        // Call reject on error states,
+        // call resolve with results
+        if (err) {
+          return reject(err);
+        }
+        resolve(rows);
+      });
     });
   };
-  insertUsers = function (newUsers, result) {
-    connect.query("INSERT INTO users SET ?", newUsers, function (err, res) {
-      if (err) {
-        return result(err, null);
-      } else {
-        return result(null, res);
-      }
+  addUsers = function (newUsers, result) {
+    return new Promise(function (resolve, reject) {
+      connect.query("INSERT INTO users SET ?", newUsers, function (err, res) {
+        if (err) {
+          return result(err, null);
+        } else {
+          return result(null, res);
+        }
+      });
     });
   };
   findUsersById = function (usersId, result) {
