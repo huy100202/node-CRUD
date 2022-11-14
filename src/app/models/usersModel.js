@@ -29,13 +29,41 @@ class usersModel {
       });
     });
   };
-  addUsers = function (newUsers, result) {
+  addUsers = function (newUsers) {
+    // let col ='';
+    // let val = '';
+    // let i=0;
+    // let query = entries(newUsers).foreach((item, index) => {
+    //   col +=  entries(newUsers)[index][0];
+    //   val +=  entries(newUsers)[index][1];
+    // })
+      let arr = Object.entries(newUsers);
+      arr.splice(arr.length-2, 1);
+      let col='';
+      let val='';
+      for (let i = 0; i < arr.length; i++) {
+      if(i){
+        col += ',';
+        val += ',';
+      }
+      if(arr[i][1] == ''){
+        return 'err';
+      }
+      col += arr[i][0];
+      val +=  "'" + arr[i][1] + "'" ;
+      }
+    let query = 'INSERT INTO users (' + col + ',created,updated) VALUES ('+val + ',now(),now())';
+    // let col = Object.keys(newUsers);
+    // col.pop();
+    // let val = Object.values(newUsers);
+    // let query='INSERT INTO users (' + col.toString() + ',created,updated) VALUES ('+val.toString() + ',now(),now())';
+    // return query;
     return new Promise(function (resolve, reject) {
-      connect.query("INSERT INTO users SET ?", newUsers, function (err, res) {
+      connect.query(query, function (err, rows, fields) {
         if (err) {
-          return result(err, null);
+          return reject(err);
         } else {
-          return result(null, res);
+          resolve(rows);
         }
       });
     });

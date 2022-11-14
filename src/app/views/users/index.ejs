@@ -11,6 +11,7 @@
             <th>Password</th>
             <th>Address</th>
             <th>Photo</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -18,10 +19,11 @@
             <% for(let i = 0; i < data.length; i++)  { %>
               <tr>
                 <td width="12%"><%= data[i].id %></td>
-                <td width="30%"><%= data[i].full_name %></td>
-                <td width="12%"><%= data[i].email %></td>
+                <td width="20%"><%= data[i].full_name %></td>
+                <td width="10%"><%= data[i].email %></td>
                 <td width="11%"><%= data[i].password %></td>
                 <td width="15%"><%= data[i].address %></td>
+                <td width="30%"><img src="<%='/upload/users/'+data[i].photo%>"  alt="<%= data[i].email %>" ></td>
                 <td width="25%">
                   <a class="btn btn-outline-info table-link" role="button" href="">
                     <i class="fa fa-eye" aria-hidden="true"></i>

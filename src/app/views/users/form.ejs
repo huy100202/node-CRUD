@@ -1,6 +1,6 @@
 <%- include('../layout/header'); %>
 <div class="row row-offcanvas row-offcanvas-right">
-    <form method="post" enctype="multipart/form-data" action="store">
+    <form method="post"  action="store" enctype="multipart/form-data">
         <div class="row mb-3">
             <label for="full_name" class="col-sm-2 col-form-label">Full Name</label>
             <div class="col-sm-10">
@@ -23,6 +23,12 @@
             <label for="address" class="col-sm-2 col-form-label">Address</label>
             <div class="col-sm-10">
             <input name="address" type="text" class="form-control" id="address" placeholder="address" >
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="photo" class="col-sm-2 col-form-label">Photo</label>
+            <div class="col-sm-10 image-upload">
+              <input name="image" type="file" class="form-control" id="photo" placeholder="photo">
             </div>
         </div>  
         <div class="row mb-3">
