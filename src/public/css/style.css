@@ -10,3 +10,10 @@ ol, ul {
 .px-130{
 padding: 130px 0;
 }
+.wh-50{
+    width:50px;
+    height:50px;
+}
+.upper-first:first-letter{
+    text-transform: uppercase;
+}
