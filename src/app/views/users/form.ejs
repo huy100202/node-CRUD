@@ -4,6 +4,7 @@
     method="post"
     action="<%= (act=='add')?'store':'update?id='+id %>"
     enctype="multipart/form-data"
+    class="w-75"
   >
     <div class="row mb-3">
       <label for="full_name" class="col-sm-2 col-form-label">Full Name</label>
@@ -79,5 +80,8 @@
       </div>
     </div>
   </form>
+  <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+		<%- include('../widgets/sidebar.ejs'); %>
+	</div>
 </div>
 <%- include('../layout/footer'); %>
