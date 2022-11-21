@@ -13,6 +13,7 @@ class UsersController {
           return err;
         })
       );
+    // res.send('asdasd')
   }
   view(req, res) {
     usersModel
@@ -29,17 +30,17 @@ class UsersController {
   }
   async delete(req, res) {
     let del;
-    await usersModel.findUsersById(req.query.id).then(function(data){
-      del=data[0].photo;
+    await usersModel.findUsersById(req.query.id).then(function (data) {
+      del = data[0].photo;
     });
     await usersModel
       .delUsersById(req.query.id)
       .then(function (data) {
-        if(del != 'no-avatar.png'){
-          fs.unlink('src/public/upload/users/'+del, (err) => {
+        if (del != "no-avatar.png") {
+          fs.unlink("src/public/upload/users/" + del, (err) => {
             if (err) {
-              console.error(err)
-              return
+              console.error(err);
+              return;
             }
           });
         }
@@ -55,7 +56,12 @@ class UsersController {
     usersModel
       .findUsersById(req.query.id)
       .then(function (data) {
-        res.render("users/form", { data: data[0], act: "update", ctl: "user", id: req.query.id});
+        res.render("users/form", {
+          data: data[0],
+          act: "update",
+          ctl: "user",
+          id: req.query.id,
+        });
       })
       .catch((err) =>
         setImmediate(() => {
@@ -69,12 +75,12 @@ class UsersController {
   update(req, res) {
     delete req.body.btn_submit;
     const file = req.file;
-    if(file){
+    if (file) {
       let del;
-      req.body.photo=file.filename;
-      usersModel.findUsersById(req.query.id).then(function(data){
-        del=data[0].photo;
-        fs.unlink('src/public/upload/users/'+del, (err) => {
+      req.body.photo = file.filename;
+      usersModel.findUsersById(req.query.id).then(function (data) {
+        del = data[0].photo;
+        fs.unlink("src/public/upload/users/" + del, (err) => {
           if (err) {
             console.error(err);
             return;
@@ -82,7 +88,7 @@ class UsersController {
         });
       });
     }
-    usersModel.updateUsers(req.query.id,req.body);
+    usersModel.updateUsers(req.query.id, req.body);
     res.redirect(`/users`);
   }
   store(req, res) {

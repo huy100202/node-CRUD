@@ -1,0 +1,38 @@
+<%- include('../layout/header'); %>
+
+<div class="row row-offcanvas row-offcanvas-right">
+	<div class="col-xs-12 col-sm-9">
+	  <div class="table-responsive">
+		<table class="table table-bordered table-striped">
+		  <colgroup>
+			<col class="col-xs-1">
+			<col class="col-xs-7">
+		  </colgroup>
+		  <thead>
+			<tr>
+			  <th>Field</th>
+			  <th>Value</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			 <%= Object.entries(data) %> 
+			<% Object.entries(data).forEach((item,index) =>{ %>
+				<tr>
+					<th scope="row" class="upper-first"><%= item[0] %></th>
+					<td><%= item[1] %></td>
+				  </tr>
+			<%}) %> 
+				
+
+
+		 
+		  </tbody>
+		</table>
+	  </div>
+	</div>
+	<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+		<%- include('../widgets/sidebar.ejs'); %>
+	</div>
+</div>
+
+<%- include('../layout/footer'); %>

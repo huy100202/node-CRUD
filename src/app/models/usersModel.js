@@ -4,10 +4,11 @@ class usersModel {
   getAllUsers = function () {
     return new Promise(function (resolve, reject) {
       let query = "SELECT * FROM users";
-      connect.query(query, function (err, rows, fields) {
+      connect.connection.query(query, function (err, rows, fields) {
         if (err) {
           return reject(err);
         }
+        console.log(rows)
         resolve(rows);
       });
     });

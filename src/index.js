@@ -5,6 +5,7 @@ const connect= require('./configs/connectDB')
 const route = require('./route');
 var path = require("path");
 connect.connection;
+connect.connectDB();
 const app = express();
 const port = 3000;
 configViewEngine(app);
