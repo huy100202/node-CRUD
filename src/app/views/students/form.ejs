@@ -58,7 +58,7 @@
         />
       </div>
     </div>
-    <input type="hidden" id="custId" name="ctl" value="<%= ctl %>">
+    <input type="hidden" id="custId" name="ctl" value="<%= ctl %>" />
     <div class="row mb-3">
       <label for="photo" class="col-sm-2 col-form-label">Photo</label>
       <div class="col-sm-10 image-upload">
@@ -68,21 +68,32 @@
           class="form-control"
           id="photo"
           placeholder="photo"
+          value="<%= act=='update'?data.profilePic:''%>"
         />
-        <% if(act=='update'){ %> 
-            <img src="/upload/users/<%= data.photo %> " alt="<%= data.email %>" class="img-thumbnail">
-        <% } %> 
+        <% if(act=='update'){ %>
+        <img
+          src="<%='/upload/' + ctl + '/' + data.profilePic %> "
+          alt="<%= data.email %>"
+          class="img-thumbnail"
+        />
+        <% } %>
       </div>
     </div>
+    <% if(err){ %>
+
+      <div class="text-center text-danger err "><%= err %> </div>
+    <%  } %> 
+    <div class=""></div>
     <div class="row mb-3">
       <div class="offset-sm-2 col-sm-10">
-        <button name="btn_submit" type="submit" class="btn btn-primary"><%= act %>
+        <button name="btn_submit" type="submit" class="btn btn-primary <%= act %> ">
+          <%= act %>
         </button>
       </div>
     </div>
   </form>
   <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
-		<%- include('../widgets/sidebar.ejs'); %>
-	</div>
+    <%- include('../widgets/sidebar.ejs'); %>
+  </div>
 </div>
 <%- include('../layout/footer'); %>

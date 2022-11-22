@@ -15,17 +15,16 @@
 			</tr>
 		  </thead>
 		  <tbody>
-			 <%= Object.entries(data) %> 
-			<% Object.entries(data).forEach((item,index) =>{ %>
+			<% for (const [key, value] of Object.entries(data)) { %>
 				<tr>
-					<th scope="row" class="upper-first"><%= item[0] %></th>
-					<td><%= item[1] %></td>
-				  </tr>
-			<%}) %> 
-				
-
-
-		 
+				  	<th scope="row" class="upper-first"><%= key %></th>
+				  	<% if (key == 'profilePic') {%>
+						<td><img src="<%= "/upload/"+ctl+"/" + value %>" alt="<% data.email %>" class="img-thumbnail wh-50"></td>
+					<% } else {%>
+				  		<td><%= value %></td>
+					<% }%>
+				</tr>
+			<% }%>
 		  </tbody>
 		</table>
 	  </div>

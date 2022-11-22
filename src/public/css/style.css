@@ -17,3 +17,6 @@ padding: 130px 0;
 .upper-first:first-letter{
     text-transform: uppercase;
 }
+.err:first-letter{
+    text-transform: uppercase;
+}

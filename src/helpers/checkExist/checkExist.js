@@ -4,10 +4,12 @@ async function checkExistStudent(req, res, next) {
   console.log(req.body.phone);
   try {
     const check = await student.find({ phone: req.body.phone });
-    console.log(check[0].full_name);
-    res.render('/students');
+    if (check[0].id == req.query.id) {
+      next();
+    } else {
+      res.redirect(`/students/add?err=phone number already exists`);
+    }
   } catch (err) {
-    
     next();
   }
 }
